@@ -1,2 +1,144 @@
 \## This is my Read me File
 
+
+-----------------------------------------------------------------------------------------
+Before starting any git cmds make sure you have a working repository created under your GitHub account either an empty one or an existing one
+
+1. initialize Git
+	git init
+	git branch ->>> this is to make sure we are working in the master brnach
+
+2. set up your email id and user name which is related to your  this is one time activity in your system
+
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+
+3. check for commit status
+	git ststus
+4. add files indivially --- or check later steps for entire files
+	git add <file name>
+	git status
+5. once you add files then commit
+	git commit -m "commit text"
+	git status
+6. we need to rename the master to main branch
+	git branch -M main
+	git branch
+7. now copy the repository link which you have created from the browser git hub
+	git remote add origin https://github.com/rahulvenkatababa-k/gittutorials.git
+	git status
+	git remove -v
+ Here we are saying where to commit of all the changes and commits we are doing
+8. finally push the files/code
+	git push -u origin main
+
+9. if any modifications are done locally and you feel these are correct then proceed as below
+	git restore Readme.md -> this is to restore the previous file
+	git add .  ->>> this is for adding all teh changes to staging env
+	git status
+	git commit -m " new commit text"
+	git push origin main
+---------------------------------------------------------------------------------------------
+
+How to clone a repo
+
+1. go to the location where you want to clone the repo open cmd to that location then get the url from the browser of the respective repo which you wanted to clone
+
+	git clone <url from github related to that repo>
+2. if any changes done post you cloned the repo
+	cd <the original repo path> if your repo is locally modified
+	git status
+	git add .
+	git commit -m <" commit text">
+	git branch
+	git push origin main
+3. redo step 1 again to get latest ->>> if any repos are cloned for the same rename or delete it
+----------------------------------------------------------------------------------------------------
+
+Scenario:- if you have made changes to any document or you felt a newly created file is not needed after git add you can use restore
+
+1. check the git status then restore then status again
+	git status
+	git add .
+	git status
+	-->>> above we added a new file
+	-->>> now i don't want the new file
+	git restore --staged "File name with extension"
+	git status
+	-->>> here the added files which can be committed will be reverted back to untracked filed
+	-->>> same can be performed by using reset instead of restore
+
+--------------------------------------------------------------------------------------------------
+functionalities:-
+
+1. if you wish to see the changes of files which are add but not commited 
+	git diff --staged
+
+---------------------------------------------------------------------------------------------------
+Branching and Merging
+
+
+1. verify in what branch you are working -->> lets say you are in main branch
+	git branch
+2. create a branch
+	git branch <branch_name>
+3. move to new branch
+	git checkout <branch_name>
+4. verify the status
+	git status
+5. Do your work once done follow same process of add, commit, status, 
+	git add .
+	git commit -m "text"
+	git status
+	git branch
+6. Once you are done with the work in this branch switchout to main and merge the branch
+	git branch
+	git checkout main
+	git branch
+	git merge <branch_name>
+	git status
+	git push origin main
+7. check logs
+	git log
+	git log -p -3
+	
+-------------------------------------------------------------------------------------------------------
+
+# How to resolve the conflicts
+Lets say two dev's are working on a project and they want to work separately and merge all branches to main...how do you resolve the conflict?
+
+1. create 2 folders named Developer A and Developer B then clone the main branch onto both the folders
+	git clone <repo url>
+	cd Application /or the actual reponame
+	git branch -->>> here you will see branch is main
+	git branch developera
+	git status
+	git branch
+	git checkout developera
+	open some files and make modification her i did for read me file
+	git status
+	git add .
+	git commit -m "developer a comment"
+	git checkout main
+	git merge developera
+	git push origin main
+2. On developer B folder 
+	git branch developer
+	git checkout developer
+	git branch
+	-->> make you changes to the same file
+	git add .
+	git commit -m "comment of developer b"
+	git checkout main
+	git merger develoeprb
+	git push origin main  -->> here you will get conflict
+# to resolve the conflict
+	git pull  --> this tells there is a conflict
+	-->> after git pull open the same file where you got conflict and see the contents -->> then remove all the headers and dashes and extra entried with alpha numerical generated by git manually then save
+	--> same process as before 
+	git add .
+	git commit -m " comment"
+	git push origin main
+
+
+
